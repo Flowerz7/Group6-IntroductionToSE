@@ -1,1 +1,1 @@
-# Group2-IntroductionToSE
+# Group6-IntroductionToSE

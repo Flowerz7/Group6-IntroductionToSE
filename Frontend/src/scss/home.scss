@@ -1,0 +1,78 @@
+@import 'config';
+@import 'utilities';
+@import 'buttons';
+
+aside {
+  li {
+    margin: 1em 0;
+  }
+}
+
+// mentor tag:
+.mentor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 90%;
+  border-radius: 20px;
+  border: solid $secondary-color 2px;
+  padding: 1em;
+  margin: 0 auto;
+  margin-bottom: 3em;
+
+  overflow: auto;
+
+  .info-container {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+  }
+  
+  .overview {
+    margin-top: 1em;
+  }
+
+  .btn-group {
+    display: flex;
+    align-self: flex-end;
+  }
+}
+
+// profile section
+.profile-section {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 90%;
+  padding: 1em;
+  margin: 0 auto;
+  margin-bottom: 3em;
+
+  overflow: auto;
+
+  .info-container {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+  }
+  
+  .overview, .description {
+    margin-top: 1em;
+  }
+
+  .btn-group {
+    display: flex;
+    align-self: flex-end;
+  }
+}

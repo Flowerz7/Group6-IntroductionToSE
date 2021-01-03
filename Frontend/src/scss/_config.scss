@@ -1,0 +1,44 @@
+$primary-color: #FFF4F2;
+$secondary-color: #000;
+$thirdary-color: #D96C62;
+$comfirm-color: #59A5CC;
+
+@font-face {
+  src: url(../../public/fonts/HelveticaNeue.otf);
+  font-family: Helvetica;
+}
+
+@font-face {
+  src: url(../../public/fonts/HelveticaNeue-Bold.otf);
+  font-family: HelveticaBold;
+}
+
+@font-face {
+  src: url(../../public/fonts/HelveticaNeue-Italic.otf);
+  font-family: HelveticaItalic;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $primary-color;
+  font-family: Helvetica;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: $secondary-color;
+}
+
+a:hover {
+  color: $thirdary-color;
+}
+
+li {
+  list-style-type: none;
+}

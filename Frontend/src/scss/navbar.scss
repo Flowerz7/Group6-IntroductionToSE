@@ -1,0 +1,41 @@
+@import 'config';
+
+.nav-container {
+  max-width: 1000px; 
+  margin: 0 auto;
+
+  span {
+    display: block;
+    padding-bottom: 12px;
+    font-family: HelveticaBold;
+    font-size: 2em;
+  }
+
+  nav {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    display: flex;
+    height: 100px;
+    align-items: center;
+  }
+
+  li {
+    list-style-type: none;
+    padding: 0 2em;
+  }
+
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    font-size: 1.3em;
+  }
+
+  a:hover {
+    color: $thirdary-color;
+  }
+}

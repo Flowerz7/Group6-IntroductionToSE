@@ -1,0 +1,16 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: $secondary-color;
+  display: flex;
+  justify-content: space-between;
+}
+
+aside {
+  width: 30%;
+}
+
+section {
+  width: 70%;
+}

@@ -1,0 +1,22 @@
+%btn2 {
+  display: inline-block;
+  color: $primary-color;
+  background-color: $thirdary-color;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+  border: 0;
+
+  &:hover {
+    transform: scale(.98);
+  }
+}
+
+.btn-primary2 { 
+  @extend %btn2;
+}
+
+.btn-secondary2 { 
+  @extend %btn2;
+  background-color: $comfirm-color;
+}

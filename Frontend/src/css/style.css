@@ -35,13 +35,23 @@ li {
   list-style-type: none;
 }
 
-.container {
-  max-width: 1200px;
+.container, .auth-container {
+  max-width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
   color: #000;
   display: flex;
-  justify-content: space-between;
+}
+
+.auth-container {
+  flex-direction: column;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 aside {
@@ -93,6 +103,7 @@ aside li {
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  margin-right: 1em;
 }
 .mentor-card .overview {
   margin-top: 1em;
@@ -128,4 +139,89 @@ aside li {
   align-self: flex-end;
 }
 
-/*# sourceMappingURL=home.css.map */
+.login-card {
+  width: 400px;
+  border-radius: 10px;
+}
+.login-card h1 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.login-card form {
+  padding: 0 40px;
+}
+.login-card form .txt-field {
+  position: relative;
+  border-bottom: 2px solid #BFBFBF;
+  margin: 30px 0;
+}
+.login-card form input {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.login-card form label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #BFBFBF;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.login-card form span::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  transition: 0.5s;
+}
+.login-card form input:focus ~ label, .login-card form input:valid ~ label {
+  top: -5px;
+  color: #59A5CC;
+}
+.login-card form input:focus ~ span::before, .login-card form input:valid ~ span::before {
+  width: 100%;
+  background-color: #59A5CC;
+}
+.login-card form .pass {
+  margin: -5px 0 20px 5px;
+  color: #BFBFBF;
+  cursor: pointer;
+}
+.login-card form .pass:hover {
+  text-decoration: underline;
+}
+.login-card form button[type=submit] {
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background-color: #59A5CC;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+.login-card form .signup-link {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #000;
+}
+.login-card form .signup-link a {
+  color: #D96C62;
+  font-weight: bold;
+}
+.login-card form .signup-link a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style.css.map */

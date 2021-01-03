@@ -1,11 +1,8 @@
 import React from "react";
 import "../../css/navbar.css";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="nav-container">
@@ -27,7 +24,7 @@ export default class Navbar extends React.Component {
               <a href="">notifications</a>
             </li>
             <li>
-              <a href="">account</a>
+              <Link to="/login">account</Link>
             </li>
           </ul>
         </nav>

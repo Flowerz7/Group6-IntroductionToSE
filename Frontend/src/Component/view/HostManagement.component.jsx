@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 import { Link } from "react-router-dom";
-import "../../css/home.css";
+import "../../css/style.css";
 
 const MenteeManagementCard = lazy(() =>
   import("./MenteeManagementCard.component")

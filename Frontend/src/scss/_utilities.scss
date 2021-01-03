@@ -1,10 +1,21 @@
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
   color: $secondary-color;
   display: flex;
-  justify-content: space-between;
+}
+
+.auth-container {
+  @extend .container;
+  flex-direction: column;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 aside {

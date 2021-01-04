@@ -8,21 +8,8 @@ aside {
   }
 }
 
-// mentor tag:
-.mentor-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  max-width: 90%;
-  border-radius: 20px;
-  border: solid $secondary-color 2px;
-  padding: 1em;
-  margin: 0 auto;
-  margin-bottom: 3em;
-
-  overflow: auto;
-
+// Overvew Section:
+.overview-container {
   .info-container {
     display: flex;
     align-items: center;
@@ -38,6 +25,23 @@ aside {
   .overview {
     margin-top: 1em;
   }
+}
+
+// mentor tag:
+.mentor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 90%;
+  border-radius: 20px;
+  border: solid $secondary-color 2px;
+  padding: 1em;
+  margin: 0 auto;
+  margin-bottom: 3em;
+
+  overflow: auto;
+
 
   .btn-group {
     display: flex;

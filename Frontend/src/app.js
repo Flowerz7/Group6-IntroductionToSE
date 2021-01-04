@@ -9,13 +9,15 @@ import ReactDOM from "react-dom";
 
 const Navbar = lazy(() => import("./Component/view/Navbar.component"));
 const LoginPage = lazy(() => import("./Component/view/LoginPage.component"));
-const Home = lazy(() => import("./Component/view/Home.component"));
-const Profile = lazy(() => import("./Component/view/Profile.component"));
-const HostManagement = lazy(() =>
-  import("./Component/view/HostManagement.component")
+const HomePage = lazy(() => import("./Component/view/HomePage.component"));
+const ProfilePage = lazy(() =>
+  import("./Component/view/ProfilePage.component")
 );
-const JoinManagement = lazy(() =>
-  import("./Component/view/JoinManagement.component")
+const HostManagementPage = lazy(() =>
+  import("./Component/view/HostManagementPage.component")
+);
+const JoinManagementPage = lazy(() =>
+  import("./Component/view/JoinManagementPage.component")
 );
 
 const Main = withRouter(({ location }) => {
@@ -25,10 +27,10 @@ const Main = withRouter(({ location }) => {
         <Navbar />
       )}
       <Route path="/login" component={LoginPage} />
-      <Route exact path="/" component={Home} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/host-management" component={HostManagement} />
-      <Route path="/join-management" component={JoinManagement} />
+      <Route exact path="/" component={HomePage} />
+      <Route path="/profile" component={ProfilePage} />
+      <Route path="/host-management" component={HostManagementPage} />
+      <Route path="/join-management" component={JoinManagementPage} />
     </div>
   );
 });

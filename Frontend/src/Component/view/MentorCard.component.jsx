@@ -1,26 +1,23 @@
-import React from "react";
+import React, { lazy } from "react";
 import avatar from "../../../public/imgs/sample.JPEG";
+
+const OverviewSection = lazy(() => import("./OverviewSection.component"));
 
 export default class MentorCard extends React.Component {
   render() {
+    const name = "Hoa Pham";
+    const major = "Information Technology";
+    const overview =
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, provident voluptatibus! Eligendi dolore ratione porro facilis, itaque quos ducimus vitae?";
+
     return (
       <div className="mentor-card">
-        <div className="info-container">
-          <img src={avatar} alt="" />
-          <ul className="info">
-            <li>
-              <strong>Hoa Pham</strong>
-            </li>
-            <li>
-              <strong>Major: </strong>Information Technology
-            </li>
-          </ul>
-        </div>
-        <div className="overview">
-          <strong>Overview: </strong> Lorem ipsum dolor, sit amet consectetur
-          adipisicing elit. Debitis, provident voluptatibus! Eligendi dolore
-          ratione porro facilis, itaque quos ducimus vitae?
-        </div>
+        <OverviewSection
+          avatar={avatar}
+          name={name}
+          major={major}
+          overview={overview}
+        />
         <div className="btn-group">
           <button className="btn-primary2">Detail</button>
         </div>

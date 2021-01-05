@@ -1,14 +1,15 @@
 import React, { Suspense, lazy } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navbar = lazy(() => import("./Component/view/Navbar.component"));
+import { AuthProvider } from "./contexts/AuthContext.js";
+
+const PrivateRoute = lazy(() =>
+  import("./Component/view/PrivateRoute.component")
+);
 const LoginPage = lazy(() => import("./Component/view/LoginPage.component"));
+const SignupPage = lazy(() => import("./Component/view/SignupPage.component"));
 const HomePage = lazy(() => import("./Component/view/HomePage.component"));
 const ProfilePage = lazy(() =>
   import("./Component/view/ProfilePage.component")
@@ -20,25 +21,25 @@ const JoinManagementPage = lazy(() =>
   import("./Component/view/JoinManagementPage.component")
 );
 
-const Main = withRouter(({ location }) => {
-  return (
-    <div>
-      {location.pathname !== "/login" && location.pathname !== "/signup" && (
-        <Navbar />
-      )}
-      <Route path="/login" component={LoginPage} />
-      <Route exact path="/" component={HomePage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/host-management" component={HostManagementPage} />
-      <Route path="/join-management" component={JoinManagementPage} />
-    </div>
-  );
-});
-
 const App = () => (
   <Router>
     <Suspense fallback={<div>Loading ... </div>}>
-      <Main />
+      <AuthProvider>
+        <Switch>
+          <PrivateRoute exact path="/" component={HomePage} />
+          <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute
+            path="/host-management"
+            component={HostManagementPage}
+          />
+          <PrivateRoute
+            path="/join-management"
+            component={JoinManagementPage}
+          />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
+        </Switch>
+      </AuthProvider>
     </Suspense>
   </Router>
 );

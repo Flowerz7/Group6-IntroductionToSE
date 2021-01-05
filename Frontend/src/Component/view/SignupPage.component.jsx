@@ -4,10 +4,11 @@ import { Alert } from "react-bootstrap";
 import regeneratorRuntime from "regenerator-runtime";
 import { useAuth } from "../../contexts/AuthContext.js";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const passwordConfirmRef = useRef();
+  const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -15,13 +16,17 @@ export default function LoginPage() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Password do not match");
+    }
+
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push("/login");
     } catch {
-      setError("Fail to login");
+      setError("Fail to create an account");
     }
 
     setLoading(false);
@@ -30,7 +35,7 @@ export default function LoginPage() {
   return (
     <div className="auth-container">
       <div className="center-container login-card">
-        <h1>Login</h1>
+        <h1>Signup</h1>
         {error && <Alert variant="danger">{error}</Alert>}
         <form onSubmit={handleSubmit}>
           <div className="txt-field">
@@ -43,14 +48,16 @@ export default function LoginPage() {
             <span></span>
             <label>Password</label>
           </div>
-          <Link to="/forgot-password" className="pass">
-            Forgot password?
-          </Link>
+          <div className="txt-field">
+            <input type="password" ref={passwordConfirmRef} required />
+            <span></span>
+            <label>Confirm Password</label>
+          </div>
           <button disabled={loading} type="submit" className="btn-primary2">
-            Login
+            Signup
           </button>
           <div className="signup-link">
-            Not a member? <Link to="/signup">Signup</Link>
+            Have an account? <Link to="/login">Login</Link>
           </div>
         </form>
       </div>

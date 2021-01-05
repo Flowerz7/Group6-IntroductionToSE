@@ -1,34 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/navbar.css";
-import { Link } from "react-router-dom";
 
-export default class Navbar extends React.Component {
-  render() {
-    return (
-      <div className="nav-container">
-        <nav>
-          <span>Gặp</span>
-          <ul>
-            <li>
-              <a href="">mentors</a>
-            </li>
-            <li>
-              <a href="">workshops</a>
-            </li>
-            <li>
-              <a href="">categories</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">notifications</a>
-            </li>
-            <li>
-              <Link to="/login">account</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    );
-  }
+export function NavbarItemGroup(props) {
+  return <ul>{props.children}</ul>;
+}
+
+export function NavbarLogo(props) {
+  return <span>{props.logo}</span>;
+}
+
+export function NavbarItem(props) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li>
+      <a href="#" onClick={() => setOpen(!open)}>
+        {props.featureName}
+      </a>
+
+      {open && props.children}
+    </li>
+  );
+}
+
+export function DropdownMenu(props) {
+  return <div className="menu-dropdown">{props.children}</div>;
+}
+
+export function DropdownOption(props) {
+  return (
+    <div className="menu-option">
+      <a href="#" onClick={props.handleOnClick}>
+        {props.optionName}
+      </a>
+    </div>
+  );
+}
+
+export function Navbar(props) {
+  return (
+    <div className="nav-container">
+      <nav>{props.children}</nav>
+    </div>
+  );
 }

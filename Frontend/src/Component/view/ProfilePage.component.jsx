@@ -13,8 +13,8 @@ export default class ProfilePage extends React.Component {
       { url: "/join-management", featureName: "Joining management" },
     ];
 
-    const featureList = features.map((feature) => (
-      <li>
+    const featureList = features.map((feature, index) => (
+      <li key={index}>
         <Link to={feature.url}>{feature.featureName}</Link>
       </li>
     ));

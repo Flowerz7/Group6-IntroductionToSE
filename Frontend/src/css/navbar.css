@@ -67,5 +67,16 @@ li {
 .nav-container a:hover {
   color: #D96C62;
 }
+.nav-container .menu-dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 10px;
+  padding: 1em;
+  background-color: #FFF4F2;
+  border-radius: 10px;
+  border: 2px solid #000;
+  font-size: 12px;
+}
 
 /*# sourceMappingURL=navbar.css.map */

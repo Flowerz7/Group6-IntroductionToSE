@@ -11,7 +11,7 @@ export default class ProfileSection extends React.Component {
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, provident voluptatibus! Eligendi dolore ratione porro facilis, itaque quos ducimus vitae?";
 
     return (
-      <div className="profile-section">
+      <section className="profile-section">
         <OverviewSection
           avatar={avatar}
           name={name}
@@ -30,7 +30,7 @@ export default class ProfileSection extends React.Component {
           <button className="btn-secondary2">Booking</button>
           <button className="btn-primary2">Add friend</button>
         </div>
-      </div>
+      </section>
     );
   }
 }

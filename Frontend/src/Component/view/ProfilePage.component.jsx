@@ -1,30 +1,20 @@
 import React, { lazy } from "react";
-import { Link } from "react-router-dom";
 import "../../css/style.css";
 
 const ProfileSection = lazy(() => import("./ProfileSection.component"));
-const SideBar = lazy(() => import("./SideBar.component"));
+const MainNavbar = lazy(() => import("./Navbar.component"));
+import { SideBar, FeatureItem } from "./SideBar.component";
 
-export default class ProfilePage extends React.Component {
-  render() {
-    const features = [
-      { url: "/profile", featureName: "Profile management" },
-      { url: "/host-management", featureName: "Hosting management" },
-      { url: "/join-management", featureName: "Joining management" },
-    ];
-
-    const featureList = features.map((feature, index) => (
-      <li key={index}>
-        <Link to={feature.url}>{feature.featureName}</Link>
-      </li>
-    ));
-    return (
+export default function ProfilePage() {
+  return (
+    <>
+      <MainNavbar />
       <div className="container">
-        <SideBar features={featureList} />
-        <section>
-          <ProfileSection />
-        </section>
+        <SideBar>
+          <FeatureItem url="#" featureName="Update my profile" />
+        </SideBar>
+        <ProfileSection />
       </div>
-    );
-  }
+    </>
+  );
 }

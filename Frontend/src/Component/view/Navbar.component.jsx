@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "../../css/navbar.css";
+import { useAuth } from "../../contexts/AuthContext";
+import "regenerator-runtime";
 
 export function NavbarItemGroup(props) {
   return <ul>{props.children}</ul>;
@@ -14,7 +17,7 @@ export function NavbarItem(props) {
 
   return (
     <li>
-      <a href="#" onClick={() => setOpen(!open)}>
+      <a href={props.link} onClick={() => setOpen(!open)}>
         {props.featureName}
       </a>
 
@@ -30,9 +33,9 @@ export function DropdownMenu(props) {
 export function DropdownOption(props) {
   return (
     <div className="menu-option">
-      <a href="#" onClick={props.handleOnClick}>
+      <Link to={props.link || "#"} onClick={props.handleOnClick}>
         {props.optionName}
-      </a>
+      </Link>
     </div>
   );
 }
@@ -42,5 +45,37 @@ export function Navbar(props) {
     <div className="nav-container">
       <nav>{props.children}</nav>
     </div>
+  );
+}
+
+export default function MainNavbar() {
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogOut() {
+    try {
+      await logout();
+      history.push("/login");
+    } catch {}
+  }
+
+  return (
+    <Navbar>
+      <NavbarLogo logo="Gap" />
+      <NavbarItemGroup>
+        <NavbarItem link="/" featureName="mentors" />
+        <NavbarItem link="/" featureName="workshops" />
+        <NavbarItem link="#" featureName="categories" />
+      </NavbarItemGroup>
+      <NavbarItemGroup>
+        <NavbarItem featureName="notifications" />
+        <NavbarItem featureName="account">
+          <DropdownMenu>
+            <DropdownOption link="/profile" optionName={currentUser.email} />
+            <DropdownOption optionName="logout" handleOnClick={handleLogOut} />
+          </DropdownMenu>
+        </NavbarItem>
+      </NavbarItemGroup>
+    </Navbar>
   );
 }

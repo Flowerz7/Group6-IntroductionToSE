@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default class SideBar extends React.Component {
-  render() {
-    const { features } = this.props;
+export function SideBar(props) {
+  return (
+    <aside>
+      <ul>{props.children}</ul>
+    </aside>
+  );
+}
 
-    return (
-      <aside>
-        <ul>{features}</ul>
-      </aside>
-    );
-  }
+export function FeatureItem(props) {
+  return (
+    <li>
+      <Link to={props.url}>{props.featureName}</Link>
+    </li>
+  );
 }

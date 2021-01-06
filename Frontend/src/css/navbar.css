@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #FFF4F2;
+  background-color: #fff;
   font-family: Helvetica;
   line-height: 1.6;
 }
@@ -33,6 +33,43 @@ a:hover {
 
 li {
   list-style-type: none;
+}
+
+.container, .auth-container, .form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #000;
+  display: flex;
+  background-color: #fff;
+}
+
+.form-container form {
+  margin: 0 auto;
+  width: 50%;
+}
+.form-container form h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.auth-container {
+  flex-direction: column;
+}
+
+.center-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+aside {
+  width: 30%;
+}
+
+section {
+  width: 70%;
 }
 
 .nav-container {
@@ -73,7 +110,7 @@ li {
   position: absolute;
   margin-top: 10px;
   padding: 1em;
-  background-color: #FFF4F2;
+  background-color: #fff;
   border-radius: 10px;
   border: 2px solid #000;
   font-size: 12px;

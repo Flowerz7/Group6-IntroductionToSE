@@ -3,25 +3,18 @@ import avatar from "../../../public/imgs/sample.JPEG";
 
 const OverviewSection = lazy(() => import("./OverviewSection.component"));
 
-export default class MentorCard extends React.Component {
-  render() {
-    const name = "Hoa Pham";
-    const major = "Information Technology";
-    const overview =
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, provident voluptatibus! Eligendi dolore ratione porro facilis, itaque quos ducimus vitae?";
-
-    return (
-      <div className="mentor-card">
-        <OverviewSection
-          avatar={avatar}
-          name={name}
-          major={major}
-          overview={overview}
-        />
-        <div className="btn-group">
-          <button className="btn-primary2">Detail</button>
-        </div>
+export default function MentorCard(props) {
+  return (
+    <div className="mentor-card">
+      <OverviewSection
+        avatar={props.info.avatarUrl}
+        name={props.info.name}
+        major={props.info.major}
+        overview={props.info.overview}
+      />
+      <div className="btn-group">
+        <button className="btn-primary2">Detail</button>
       </div>
-    );
-  }
+    </div>
+  );
 }

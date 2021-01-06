@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #FFF4F2;
+  background-color: #fff;
   font-family: Helvetica;
   line-height: 1.6;
 }
@@ -35,12 +35,22 @@ li {
   list-style-type: none;
 }
 
-.container, .auth-container {
+.container, .auth-container, .form-container {
   max-width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
   color: #000;
   display: flex;
+  background-color: #fff;
+}
+
+.form-container form {
+  margin: 0 auto;
+  width: 50%;
+}
+.form-container form h1 {
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .auth-container {
@@ -64,12 +74,13 @@ section {
 
 .btn-secondary2, .btn-primary2 {
   display: inline-block;
-  color: #FFF4F2;
+  color: #fff;
   background-color: #D96C62;
   border-radius: 5px;
   padding: 8px 20px;
   margin: 3px;
   border: 0;
+  outline: none;
 }
 .btn-secondary2:hover, .btn-primary2:hover {
   transform: scale(0.98);

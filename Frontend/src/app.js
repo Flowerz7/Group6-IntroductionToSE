@@ -20,6 +20,9 @@ const HostManagementPage = lazy(() =>
 const JoinManagementPage = lazy(() =>
   import("./Component/view/JoinManagementPage.component")
 );
+const UpdateProfilePage = lazy(() =>
+  import("./Component/view/UpdateProfilePage.component")
+);
 
 const App = () => (
   <Router>
@@ -38,6 +41,7 @@ const App = () => (
           />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/create-profile" component={UpdateProfilePage} />
         </Switch>
       </AuthProvider>
     </Suspense>

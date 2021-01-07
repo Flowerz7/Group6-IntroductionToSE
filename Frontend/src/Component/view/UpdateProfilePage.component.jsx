@@ -3,9 +3,11 @@ import { storage } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
-export default function UpdateProfilePage() {
+export default function UpdateProfilePage(props) {
   const nameRef = useRef();
   const genderRef = useRef();
+  const majorRef = useRef();
+  const overviewRef = useRef();
   const descriptionRef = useRef();
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
@@ -56,9 +58,15 @@ export default function UpdateProfilePage() {
             const newProfile = {
               Name: nameRef.current.value,
               Gender: genderRef.current.value,
+              Major: majorRef.current.value,
+              overview: overviewRef.current.value,
               Description: descriptionRef.current.value,
               Image: url,
             };
+
+            const email = props.match.params.email;
+
+            console.log(`Email: ${email}`);
 
             // call axios store profile to database:
 
@@ -87,6 +95,19 @@ export default function UpdateProfilePage() {
           />
         </div>
         <div className="mb-3">
+          <label className="form-label">Major</label>
+          <select
+            className="form-select"
+            ref={majorRef}
+            aria-label="Default select example"
+          >
+            <option defaultValue value="Mail">
+              Information Technology
+            </option>
+            <option value="Female">Art and design</option>
+          </select>
+        </div>
+        <div className="mb-3">
           <label className="form-label">Gender</label>
           <select
             className="form-select"
@@ -98,6 +119,14 @@ export default function UpdateProfilePage() {
             </option>
             <option value="Female">Female</option>
           </select>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Overview</label>
+          <textarea
+            className="form-control"
+            ref={overviewRef}
+            rows="3"
+          ></textarea>
         </div>
         <div className="mb-3">
           <label className="form-label">Description</label>

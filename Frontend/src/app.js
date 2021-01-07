@@ -30,7 +30,7 @@ const App = () => (
       <AuthProvider>
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
-          <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/profile/:userID" component={ProfilePage} />
           <PrivateRoute
             path="/host-management"
             component={HostManagementPage}
@@ -41,7 +41,7 @@ const App = () => (
           />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
-          <Route path="/create-profile" component={UpdateProfilePage} />
+          <Route path="/create-profile/:email" component={UpdateProfilePage} />
         </Switch>
       </AuthProvider>
     </Suspense>

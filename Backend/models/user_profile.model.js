@@ -1,6 +1,6 @@
 const db = require('../utils/db');
 
-const TBL_USER = 'user';
+const TBL_USER = 'user_profile';
 
 module.exports = {
     all() {
@@ -9,6 +9,14 @@ module.exports = {
 
     async singleByID(id) {
         const rows = await db.load(`select * from ${TBL_USER} where UserID = ${id}`);
+        if (rows.length === 0)
+            return null;
+            
+        return rows[0];
+    },
+
+    async singleByEmail(email) {
+        const rows = await db.load(`select * from ${TBL_USER} where Email = ${email}`);
         if (rows.length === 0)
             return null;
             

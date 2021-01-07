@@ -44,30 +44,6 @@ INSERT INTO `appointment` VALUES (1,1,2,'2021-01-03',0,0),(3,2,3,'2021-01-03',0,
 UNLOCK TABLES;
 
 --
--- Table structure for table `field`
---
-
-DROP TABLE IF EXISTS `field`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `field` (
-  `ID` int unsigned NOT NULL AUTO_INCREMENT,
-  `UserID` varchar(45) NOT NULL,
-  `Fieldname` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `field`
---
-
-LOCK TABLES `field` WRITE;
-/*!40000 ALTER TABLE `field` DISABLE KEYS */;
-/*!40000 ALTER TABLE `field` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `friend`
 --
 
@@ -142,32 +118,6 @@ LOCK TABLES `notify` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `profile`
---
-
-DROP TABLE IF EXISTS `profile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `profile` (
-  `UserID` int unsigned NOT NULL,
-  `Name` varchar(45) NOT NULL,
-  `Image` varchar(255) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Gender` tinyint NOT NULL,
-  PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `profile`
---
-
-LOCK TABLES `profile` WRITE;
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `review`
 --
 
@@ -194,29 +144,37 @@ LOCK TABLES `review` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `user_profile`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `user_profile`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `user_profile` (
   `UserID` int unsigned NOT NULL AUTO_INCREMENT,
-  `Username` varchar(45) NOT NULL,
-  `Password` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
   `Permission` int NOT NULL,
   `AvgStar` float DEFAULT NULL,
-  PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Name` varchar(45) NOT NULL,
+  `Gender` tinyint(1) NOT NULL,
+  `Overview` text NOT NULL,
+  `Description` text NOT NULL,
+  `ImageUrl` varchar(255) NOT NULL,
+  `Major` varchar(255) NOT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `UserID_UNIQUE` (`UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `user_profile`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `user_profile` WRITE;
+/*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
+INSERT INTO `user_profile` VALUES (1,'abc@gmail.com',1,NULL,'abc',0,'abc','abc','123','123');
+/*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -228,7 +186,11 @@ DROP TABLE IF EXISTS `workshop`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `workshop` (
   `WorkshopID` int unsigned NOT NULL AUTO_INCREMENT,
-  `MentorID` int unsigned NOT NULL,
+  `MentorID` int NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `Place` varchar(255) NOT NULL,
+  `Time` time NOT NULL,
   PRIMARY KEY (`WorkshopID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -241,32 +203,6 @@ LOCK TABLES `workshop` WRITE;
 /*!40000 ALTER TABLE `workshop` DISABLE KEYS */;
 /*!40000 ALTER TABLE `workshop` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `workshop_detail`
---
-
-DROP TABLE IF EXISTS `workshop_detail`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `workshop_detail` (
-  `WorkshopID` int unsigned NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Place` varchar(255) NOT NULL,
-  `Time` time NOT NULL,
-  PRIMARY KEY (`WorkshopID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `workshop_detail`
---
-
-LOCK TABLES `workshop_detail` WRITE;
-/*!40000 ALTER TABLE `workshop_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `workshop_detail` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -277,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-03 18:02:25
+-- Dump completed on 2021-01-07 11:46:09

@@ -7,10 +7,10 @@ import { SideBar, FeatureItem } from "./SideBar.component";
 
 export default function ProfilePage(props) {
   const [profile, setProfile] = useState();
+  const userID = props.match.params.userID;
 
   useEffect(() => {
     // Call axios get the profile with the given userID:
-    const userID = props.match.params.userID;
     setProfile({
       userID: "1",
       name: "Pham Viet Hoa",
@@ -31,7 +31,7 @@ export default function ProfilePage(props) {
         <SideBar>
           <FeatureItem url="#" featureName="Update my profile" />
         </SideBar>
-        <ProfileSection info={profile} />
+        <ProfileSection mentorID={userID} info={profile} />
       </div>
     </>
   );

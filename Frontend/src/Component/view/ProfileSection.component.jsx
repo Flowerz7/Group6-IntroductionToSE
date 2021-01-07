@@ -1,11 +1,28 @@
-import React, { lazy } from "react";
+import React, { lazy, useState } from "react";
 const OverviewSection = lazy(() => import("./OverviewSection.component"));
+import { useAuth } from "../../contexts/AuthContext";
+import { ModalForm } from "./ModalForm.component";
+import axios from "axios";
 
 export default function ProfileSection(props) {
-  function handleBooking() {
-    // Call axios add a appointment request card for the mentor:
+  const { currentUser } = useAuth();
+  const email = currentUser.email;
+  const [modalShow, setModalShow] = useState(false);
 
-    const newBookingRequest = {};
+  function handleBooking(message) {
+    // Call axios to get userID from given EMAIL:
+    const sampleUserID = "1010101";
+
+    // Call axios add a appointment request card for the mentor:
+    const newNoti = {
+      mentorID: props.mentorID,
+      menteeID: sampleUserID,
+      type: 0,
+      content: message,
+      isDone: 0,
+    };
+
+    console.log(`Noti: ${JSON.stringify(newNoti)}`);
   }
 
   function handleAddFriend() {
@@ -24,11 +41,16 @@ export default function ProfileSection(props) {
         <strong>Description: </strong>
         {props.info.description}
       </div>
+      <ModalForm
+        handleBooking={handleBooking}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <div className="btn-group">
-        <button onClick={handleBooking} className="btn-secondary2">
+        <button onClick={() => setModalShow(true)} className="btn-secondary2">
           Booking
         </button>
-        <button onClick={handleAddFriend} className="btn-primary2">
+        <button onClick={() => setModalShow(true)} className="btn-primary2">
           Add friend
         </button>
       </div>

@@ -1,5 +1,8 @@
 Frontend/node_modules/
 Backend/node_modules/
+<<<<<<< HEAD
 node_modules/
+=======
+>>>>>>> d2919a2b7e3429d1c66ce3ff537eabc1a3e43b32
 dist/
 .cache/

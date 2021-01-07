@@ -8,14 +8,21 @@ import { MainSection } from "./MainSection.component";
 
 export default function HomePage() {
   const [mentorInfo, setMentorInfo] = useState([]);
+  const [currenMajor, setCurrentMajor] = useState("All");
+
+  function handleChangeMajor(major) {
+    setCurrentMajor(major);
+  }
+
+  console.log(`Current major: ${currenMajor}`);
 
   useEffect(() => {
     // loading mentorInfo form databse by call axios
-    setMentorInfo([
+    const data = [
       {
         userID: "1",
         name: "Pham Viet Hoa",
-        major: "Infomation Technology",
+        major: "Information Technology",
         overview:
           "Pham Viet Hoa dep trai thanh lich vo dich khap vu tru oke nha may ban, lam on ha cai toi xuong.",
         avatarUrl:
@@ -24,17 +31,26 @@ export default function HomePage() {
       {
         userID: "2",
         name: "Le Vo Thanh Thao",
-        major: "Artist",
+        major: "Art and design",
         overview: "Le Vo Thanh Thao, Cu te, em gai nuoi cua a Hoa.",
         avatarUrl:
           "https://scontent-sin6-2.xx.fbcdn.net/v/t1.0-1/p100x100/133035022_2871980963022327_6176401707315165833_n.jpg?_nc_cat=105&ccb=2&_nc_sid=7206a8&_nc_ohc=hwWsKK-hoNcAX_3ERWf&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent-sin6-2.xx&tp=6&oh=a0911b0e1b54f687ab12f08660c3f231&oe=601BB392",
       },
-    ]);
-  }, []);
+    ];
+
+    if (currenMajor === "All") {
+      setMentorInfo(data);
+    } else {
+      setMentorInfo(data.filter((mentor) => mentor.major === currenMajor));
+    }
+  }, [currenMajor]);
 
   return (
     <>
-      <MainNavbar />
+      <MainNavbar
+        currentMajor={currenMajor}
+        handleChangeMajor={handleChangeMajor}
+      />
       <div className="container">
         <SideBar>
           <FeatureItem

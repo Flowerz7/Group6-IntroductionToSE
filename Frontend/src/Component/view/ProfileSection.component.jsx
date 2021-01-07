@@ -4,6 +4,8 @@ const OverviewSection = lazy(() => import("./OverviewSection.component"));
 export default function ProfileSection(props) {
   function handleBooking() {
     // Call axios add a appointment request card for the mentor:
+
+    const newBookingRequest = {};
   }
 
   function handleAddFriend() {

@@ -48,8 +48,9 @@ export function Navbar(props) {
   );
 }
 
-export default function MainNavbar() {
+export default function MainNavbar(props) {
   const { currentUser, logout } = useAuth();
+  const [currentMajor, setCurrentMajor] = useState(props.currentMajor);
   const history = useHistory();
 
   async function handleLogOut() {
@@ -59,13 +60,37 @@ export default function MainNavbar() {
     } catch {}
   }
 
+  function handleOnClickMajor(newMajor) {
+    if (newMajor === currentMajor) {
+      return;
+    }
+
+    setCurrentMajor(newMajor);
+    props.handleChangeMajor(newMajor);
+  }
+
   return (
     <Navbar>
       <NavbarLogo logo="Gap" />
       <NavbarItemGroup>
         <NavbarItem link="/" featureName="mentors" />
         <NavbarItem link="/" featureName="workshops" />
-        <NavbarItem link="#" featureName="categories" />
+        <NavbarItem link="#" featureName="categories">
+          <DropdownMenu>
+            <DropdownOption
+              optionName="All"
+              handleOnClick={() => handleOnClickMajor("All")}
+            />
+            <DropdownOption
+              optionName="Information Technology"
+              handleOnClick={() => handleOnClickMajor("Information Technology")}
+            />
+            <DropdownOption
+              optionName="Art and design"
+              handleOnClick={() => handleOnClickMajor("Art and design")}
+            />
+          </DropdownMenu>
+        </NavbarItem>
       </NavbarItemGroup>
       <NavbarItemGroup>
         <NavbarItem featureName="notifications" />

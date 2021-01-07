@@ -12,7 +12,9 @@ export function SideBar(props) {
 export function FeatureItem(props) {
   return (
     <li>
-      <Link to={props.url}>{props.featureName}</Link>
+      <Link onClick={props.handleOnClick} to={props.url}>
+        {props.featureName}
+      </Link>
     </li>
   );
 }

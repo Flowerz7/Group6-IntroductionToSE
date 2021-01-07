@@ -20,6 +20,9 @@ const HostManagementPage = lazy(() =>
 const JoinManagementPage = lazy(() =>
   import("./Component/view/JoinManagementPage.component")
 );
+const RequestManagementPage = lazy(() =>
+  import("./Component/view/RequestManagementPage.component")
+);
 const UpdateProfilePage = lazy(() =>
   import("./Component/view/UpdateProfilePage.component")
 );
@@ -38,6 +41,10 @@ const App = () => (
           <PrivateRoute
             path="/join-management"
             component={JoinManagementPage}
+          />
+          <PrivateRoute
+            path="/request-management"
+            component={RequestManagementPage}
           />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />

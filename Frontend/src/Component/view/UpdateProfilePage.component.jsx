@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { storage } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import axios from "axios";
 
 export default function UpdateProfilePage(props) {
   const nameRef = useRef();
@@ -55,20 +56,20 @@ export default function UpdateProfilePage(props) {
           .then((url) => {
             console.log(url);
 
-            const newProfile = {
-              Name: nameRef.current.value,
-              Gender: genderRef.current.value,
-              Major: majorRef.current.value,
-              overview: overviewRef.current.value,
-              Description: descriptionRef.current.value,
-              Image: url,
-            };
-
             const email = props.match.params.email;
 
-            console.log(`Email: ${email}`);
+            const newProfile = {
+              email: email,
+              name: nameRef.current.value,
+              gender: genderRef.current.value,
+              major: majorRef.current.value,
+              overview: overviewRef.current.value,
+              description: descriptionRef.current.value,
+              image: url,
+            };
 
             // call axios store profile to database:
+            //await axios.post("http://localhost:3000/profile/add", newProfile);
 
             console.log(`Profile: ${JSON.stringify(newProfile)}`);
             history.push("/login");

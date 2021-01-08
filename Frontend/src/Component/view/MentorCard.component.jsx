@@ -7,15 +7,15 @@ export default function MentorCard(props) {
   const history = useHistory();
 
   function handleViewProfile() {
-    const userID = props.info.userID;
+    const id = props.info._id;
 
-    history.push(`/profile/${userID}`);
+    history.push(`/profiles/${id}`);
   }
 
   return (
     <div className="mentor-card">
       <OverviewSection
-        avatar={props.info.avatarUrl}
+        avatar={props.info.imageUrl}
         name={props.info.name}
         major={props.info.major}
         overview={props.info.overview}

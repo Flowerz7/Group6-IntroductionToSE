@@ -94,6 +94,17 @@ aside li {
   margin: 1em 0;
 }
 
+.modal {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overview-container {
+  margin: 1em 0;
+}
 .overview-container .info-container {
   display: flex;
   align-items: center;
@@ -106,6 +117,7 @@ aside li {
 }
 .overview-container .overview {
   margin-top: 1em;
+  text-align: justify;
 }
 
 .mentor-card {
@@ -115,7 +127,7 @@ aside li {
   max-width: 90%;
   border-radius: 20px;
   border: solid #000 2px;
-  padding: 1em;
+  padding: 1.5em;
   margin: 0 auto;
   margin-bottom: 3em;
   overflow: auto;

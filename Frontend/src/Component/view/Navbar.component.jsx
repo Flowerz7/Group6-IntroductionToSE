@@ -49,7 +49,7 @@ export function Navbar(props) {
 }
 
 export default function MainNavbar(props) {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, currentID, logout } = useAuth();
   const [currentMajor, setCurrentMajor] = useState(props.currentMajor);
   const history = useHistory();
 
@@ -58,6 +58,10 @@ export default function MainNavbar(props) {
       await logout();
       history.push("/login");
     } catch {}
+  }
+
+  function handleOnClickProfile() {
+    history.push(`/profiles/${currentID}`);
   }
 
   function handleOnClickMajor(newMajor) {
@@ -96,7 +100,10 @@ export default function MainNavbar(props) {
         <NavbarItem featureName="notifications" />
         <NavbarItem featureName="account">
           <DropdownMenu>
-            <DropdownOption link="/profile" optionName={currentUser.email} />
+            <DropdownOption
+              handleOnClick={handleOnClickProfile}
+              optionName={currentUser.email}
+            />
             <DropdownOption optionName="logout" handleOnClick={handleLogOut} />
           </DropdownMenu>
         </NavbarItem>

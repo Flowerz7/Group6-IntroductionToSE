@@ -8,8 +8,18 @@ aside {
   }
 }
 
+.modal {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 // Overvew Section:
 .overview-container {
+  margin: 1em 0;
+
   .info-container {
     display: flex;
     align-items: center;
@@ -24,6 +34,7 @@ aside {
   
   .overview {
     margin-top: 1em;
+    text-align: justify;
   }
 }
 
@@ -36,7 +47,7 @@ aside {
   max-width: 90%;
   border-radius: 20px;
   border: solid $secondary-color 2px;
-  padding: 1em;
+  padding: 1.5em;
   margin: 0 auto;
   margin-bottom: 3em;
 

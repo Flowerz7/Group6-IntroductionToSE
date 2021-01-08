@@ -1,45 +1,72 @@
-import React, { useRef } from "react";
-import { Modal, Row, Col, Form } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Modal } from "react-bootstrap";
+import axios from "axios";
+import "regenerator-runtime";
 
 export function ModalForm(props) {
-  const bookingMessageRef = useRef();
+  const messageRef = useRef();
+  const [isBooking, setIsBooking] = useState(false);
+  const { requirement } = props;
 
-  function handleOnSend() {
-    const content = bookingMessageRef.current.value;
-    props.handleBooking(content);
+  async function handleOnSend() {
+    const newRequirement = {
+      ...requirement,
+      type: "appointment",
+      message: messageRef.current.value,
+    };
+
+    await axios.post("http://localhost:3000/requirements/add", newRequirement);
+
+    setIsBooking(true);
   }
 
+  const title = isBooking ? (
+    <Modal.Title id="contained-modal-title-vcenter">Result</Modal.Title>
+  ) : (
+    <Modal.Title id="contained-modal-title-vcenter">
+      Enter your message
+    </Modal.Title>
+  );
+
+  const body = isBooking ? (
+    <Modal.Body>
+      <div className="mb-3">Your booking message has been sent!</div>
+    </Modal.Body>
+  ) : (
+    <Modal.Body>
+      <form>
+        <div className="mb-3">
+          <textarea
+            className="form-control"
+            ref={messageRef}
+            rows="3"
+          ></textarea>
+        </div>
+      </form>
+    </Modal.Body>
+  );
+
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Your booking message
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <form>
-          <div className="mb-3">
-            <textarea
-              className="form-control"
-              ref={bookingMessageRef}
-              rows="3"
-            ></textarea>
-          </div>
-        </form>
-      </Modal.Body>
-      <Modal.Footer>
-        <button onClick={handleOnSend} className="btn-secondary2">
-          Send
-        </button>
-        <button className="btn-primary2" onClick={props.onHide}>
-          Close
-        </button>
-      </Modal.Footer>
-    </Modal>
+    <div className="modal">
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header>{title}</Modal.Header>
+        {body}
+        <Modal.Footer>
+          {isBooking === false && (
+            <button onClick={handleOnSend} className="btn-secondary2">
+              Send
+            </button>
+          )}
+          <button className="btn-primary2" onClick={props.onHide}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 }

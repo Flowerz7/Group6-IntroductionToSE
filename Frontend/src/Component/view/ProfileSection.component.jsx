@@ -1,38 +1,23 @@
 import React, { lazy, useState } from "react";
 const OverviewSection = lazy(() => import("./OverviewSection.component"));
-import { useAuth } from "../../contexts/AuthContext";
 import { ModalForm } from "./ModalForm.component";
+import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
+import "regenerator-runtime";
 
 export default function ProfileSection(props) {
-  const { currentUser } = useAuth();
-  const email = currentUser.email;
   const [modalShow, setModalShow] = useState(false);
+  const { currentID } = useAuth();
 
-  function handleBooking(message) {
-    // Call axios to get userID from given EMAIL:
-    const sampleUserID = "1010101";
-
-    // Call axios add a appointment request card for the mentor:
-    const newNoti = {
-      mentorID: props.mentorID,
-      menteeID: sampleUserID,
-      type: 0,
-      content: message,
-      isDone: 0,
-    };
-
-    console.log(`Noti: ${JSON.stringify(newNoti)}`);
-  }
-
-  function handleAddFriend() {
-    // Call axios add a make friend request card for the mentor:
-  }
+  const requirementInfo = {
+    mentorID: props.info._id,
+    menteeID: currentID,
+  };
 
   return (
     <section className="profile-section">
       <OverviewSection
-        avatar={props.info.avatarUrl}
+        avatar={props.info.imageUrl}
         name={props.info.name}
         major={props.info.major}
         overview={props.info.overview}
@@ -42,7 +27,7 @@ export default function ProfileSection(props) {
         {props.info.description}
       </div>
       <ModalForm
-        handleBooking={handleBooking}
+        requirement={requirementInfo}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

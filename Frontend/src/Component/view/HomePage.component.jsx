@@ -1,5 +1,8 @@
 import React, { lazy, useState, useEffect } from "react";
+import axios from "axios";
 import "../../css/style.css";
+import "regenerator-runtime";
+import { useAuth } from "../../contexts/AuthContext";
 
 const MentorCard = lazy(() => import("./MentorCard.component"));
 const MainNavbar = lazy(() => import("./Navbar.component"));
@@ -8,61 +11,46 @@ import { MainSection } from "./MainSection.component";
 
 export default function HomePage() {
   const [mentorInfo, setMentorInfo] = useState([]);
-  const [currenMajor, setCurrentMajor] = useState("All");
+  const [currentMajor, setCurrentMajor] = useState("All");
+  const { currentUser, currentID } = useAuth();
 
   function handleChangeMajor(major) {
     setCurrentMajor(major);
   }
 
-  console.log(`Current major: ${currenMajor}`);
+  useEffect(async () => {
+    // Call API to get data from database:
+    const result = await axios.get("http://localhost:3000/profiles/");
+    const data = result.data.filter(
+      (mentor) => mentor.email !== currentUser.email
+    );
 
-  useEffect(() => {
-    // loading mentorInfo form databse by call axios
-    const data = [
-      {
-        userID: "1",
-        name: "Pham Viet Hoa",
-        major: "Information Technology",
-        overview:
-          "Pham Viet Hoa dep trai thanh lich vo dich khap vu tru oke nha may ban, lam on ha cai toi xuong.",
-        avatarUrl:
-          "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/118711124_342979126887840_2435622899709902230_o.jpg?_nc_cat=109&ccb=2&_nc_sid=dbb9e7&_nc_ohc=zKbXAEJF-50AX_zG_PJ&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&tp=6&oh=6d6063b7a2b4730881175c8e892dde95&oe=601D2C56",
-      },
-      {
-        userID: "2",
-        name: "Le Vo Thanh Thao",
-        major: "Art and design",
-        overview: "Le Vo Thanh Thao, Cu te, em gai nuoi cua a Hoa.",
-        avatarUrl:
-          "https://scontent-sin6-2.xx.fbcdn.net/v/t1.0-1/p100x100/133035022_2871980963022327_6176401707315165833_n.jpg?_nc_cat=105&ccb=2&_nc_sid=7206a8&_nc_ohc=hwWsKK-hoNcAX_3ERWf&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent-sin6-2.xx&tp=6&oh=a0911b0e1b54f687ab12f08660c3f231&oe=601BB392",
-      },
-    ];
-
-    if (currenMajor === "All") {
+    // Filter mentor info base on currentMajor:
+    if (currentMajor === "All") {
       setMentorInfo(data);
     } else {
-      setMentorInfo(data.filter((mentor) => mentor.major === currenMajor));
+      setMentorInfo(data.filter((mentor) => mentor.major === currentMajor));
     }
-  }, [currenMajor]);
+  }, [currentMajor]);
 
   return (
     <>
       <MainNavbar
-        currentMajor={currenMajor}
+        currentMajor={currentMajor}
         handleChangeMajor={handleChangeMajor}
       />
       <div className="container">
         <SideBar>
           <FeatureItem
-            url="/request-management"
+            url={`/request-management/${currentID}`}
             featureName="Requests management"
           />
           <FeatureItem
-            url="/host-management"
+            url={`/host-management/${currentID}`}
             featureName="Hosting management"
           />
           <FeatureItem
-            url="/join-management"
+            url={`/join-management/${currentID}`}
             featureName="Joining management"
           />
         </SideBar>

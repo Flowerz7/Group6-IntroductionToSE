@@ -33,17 +33,17 @@ const App = () => (
       <AuthProvider>
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
-          <PrivateRoute path="/profile/:userID" component={ProfilePage} />
+          <PrivateRoute path="/profiles/:id" component={ProfilePage} />
           <PrivateRoute
-            path="/host-management"
+            path="/host-management/:id"
             component={HostManagementPage}
           />
           <PrivateRoute
-            path="/join-management"
+            path="/join-management/:id"
             component={JoinManagementPage}
           />
           <PrivateRoute
-            path="/request-management"
+            path="/request-management/:id"
             component={RequestManagementPage}
           />
           <Route path="/login" component={LoginPage} />

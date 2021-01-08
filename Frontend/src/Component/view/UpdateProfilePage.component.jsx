@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { storage } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import "regenerator-runtime";
 import axios from "axios";
 
 export default function UpdateProfilePage(props) {
@@ -65,13 +66,13 @@ export default function UpdateProfilePage(props) {
               major: majorRef.current.value,
               overview: overviewRef.current.value,
               description: descriptionRef.current.value,
-              image: url,
+              imageUrl: url,
             };
 
-            // call axios store profile to database:
-            //await axios.post("http://localhost:3000/profile/add", newProfile);
+            axios
+              .post("http://localhost:3000/profiles/add", newProfile)
+              .then((res) => console.log(res.data));
 
-            console.log(`Profile: ${JSON.stringify(newProfile)}`);
             history.push("/login");
           });
       }
@@ -102,10 +103,10 @@ export default function UpdateProfilePage(props) {
             ref={majorRef}
             aria-label="Default select example"
           >
-            <option defaultValue value="Mail">
+            <option defaultValue="Information Technology">
               Information Technology
             </option>
-            <option value="Female">Art and design</option>
+            <option value="Art and design">Art and design</option>
           </select>
         </div>
         <div className="mb-3">
@@ -115,7 +116,7 @@ export default function UpdateProfilePage(props) {
             ref={genderRef}
             aria-label="Default select example"
           >
-            <option defaultValue value="Mail">
+            <option defaultValue value="Male">
               Male
             </option>
             <option value="Female">Female</option>

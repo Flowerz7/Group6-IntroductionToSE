@@ -2,12 +2,6 @@
 @import 'utilities';
 @import 'buttons';
 
-aside {
-  li {
-    margin: 1em 0;
-  }
-}
-
 .modal {
   width: 500px;
   position: absolute;
@@ -83,11 +77,12 @@ aside {
     }
   }
   
-  .overview, .description {
+  .overview {
     margin-top: 1em;
   }
 
   .btn-group {
+    margin-top: 1em;
     display: flex;
     align-self: flex-end;
   }
@@ -195,4 +190,16 @@ aside {
   }
 }
 
+.empty-page {
+  text-align: center;
+}
 
+aside {
+  ul {
+    padding: 0;
+  } 
+
+  li {
+    margin-bottom: 1em;
+  }
+}

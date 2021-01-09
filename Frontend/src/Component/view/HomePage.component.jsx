@@ -5,9 +5,10 @@ import "regenerator-runtime";
 import { useAuth } from "../../contexts/AuthContext";
 
 const MentorCard = lazy(() => import("./MentorCard.component"));
+const MainSection = lazy(() => import("./MainSection.component"));
+const EmptyPage = lazy(() => import("./EmptyPage.component"));
 const MainNavbar = lazy(() => import("./Navbar.component"));
 import { SideBar, FeatureItem } from "./SideBar.component.jsx";
-import { MainSection } from "./MainSection.component";
 
 export default function HomePage() {
   const [mentorInfo, setMentorInfo] = useState([]);
@@ -55,9 +56,13 @@ export default function HomePage() {
           />
         </SideBar>
         <MainSection>
-          {mentorInfo.map((info, index) => (
-            <MentorCard key={index} info={info} />
-          ))}
+          {mentorInfo.length > 0 ? (
+            mentorInfo.map((info, index) => (
+              <MentorCard key={index} info={info} />
+            ))
+          ) : (
+            <EmptyPage>Do not have any mentors.</EmptyPage>
+          )}
         </MainSection>
       </div>
     </>

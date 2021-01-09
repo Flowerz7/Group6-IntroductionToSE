@@ -8,8 +8,9 @@
   span {
     display: block;
     font-family: HelveticaBold;
-    font-size: 2em;
-    padding-bottom: 10px;
+    font-size: 1.5em;
+    pointer-events: auto;
+    margin: 0 10px;
   }
 
   nav {
@@ -23,11 +24,17 @@
     display: flex;
     height: 100px;
     align-items: center;
+    margin: 0 20px;
   }
 
   li {
     list-style-type: none;
     padding: 0 2em;
+
+    i {
+      margin: 0;
+      padding: 0;
+    }
 
   }
 

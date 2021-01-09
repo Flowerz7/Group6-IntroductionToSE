@@ -8,6 +8,8 @@ const RequestManagementCard = lazy(() =>
 );
 
 const MainNavbar = lazy(() => import("./Navbar.component"));
+const EmptyPage = lazy(() => import("./EmptyPage.component"));
+const MainSection = lazy(() => import("./MainSection.component"));
 import { SideBar, FeatureItem } from "./SideBar.component";
 
 export default function RequestManagementPage(props) {
@@ -49,11 +51,18 @@ export default function RequestManagementPage(props) {
             featureName="Make friend requirements"
           />
         </SideBar>
-        <section>
-          {requirements.map((requirement, index) => (
-            <RequestManagementCard requirementInfo={requirement} key={index} />
-          ))}
-        </section>
+        <MainSection>
+          {requirements.length > 0 ? (
+            requirements.map((requirement, index) => (
+              <RequestManagementCard
+                requirementInfo={requirement}
+                key={index}
+              />
+            ))
+          ) : (
+            <EmptyPage>You do not have any requirements now.</EmptyPage>
+          )}
+        </MainSection>
       </div>
     </>
   );

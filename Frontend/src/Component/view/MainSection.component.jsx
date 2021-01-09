@@ -1,5 +1,5 @@
 import React from "react";
 
-export function MainSection(props) {
+export default function MainSection(props) {
   return <section>{props.children}</section>;
 }

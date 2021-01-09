@@ -90,10 +90,6 @@ section {
   background-color: #59A5CC;
 }
 
-aside li {
-  margin: 1em 0;
-}
-
 .modal {
   width: 500px;
   position: absolute;
@@ -155,10 +151,11 @@ aside li {
   height: 75px;
   border-radius: 50%;
 }
-.profile-section .overview, .profile-section .description {
+.profile-section .overview {
   margin-top: 1em;
 }
 .profile-section .btn-group {
+  margin-top: 1em;
   display: flex;
   align-self: flex-end;
 }
@@ -246,6 +243,17 @@ aside li {
 }
 .login-card form .signup-link a:hover {
   text-decoration: underline;
+}
+
+.empty-page {
+  text-align: center;
+}
+
+aside ul {
+  padding: 0;
+}
+aside li {
+  margin-bottom: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */

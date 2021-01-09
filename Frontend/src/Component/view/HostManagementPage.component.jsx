@@ -4,6 +4,8 @@ import axios from "axios";
 import "regenerator-runtime";
 
 const MainNavbar = lazy(() => import("./Navbar.component"));
+const MainSection = lazy(() => import("./MainSection.component"));
+const EmptyPage = lazy(() => import("./EmptyPage.component"));
 const MenteeManagementCard = lazy(() =>
   import("./MenteeManagementCard.component")
 );
@@ -32,11 +34,15 @@ export default function HostManagementPage(props) {
           <FeatureItem url="#" featureName="Appointment" />
           <FeatureItem url="#" featureName="Workshops" />
         </SideBar>
-        <section>
-          {appointments.map((appointment, index) => (
-            <MenteeManagementCard appointmentInfo={appointment} key={index} />
-          ))}
-        </section>
+        <MainSection>
+          {appointments.length > 0 ? (
+            appointments.map((appointment, index) => (
+              <MenteeManagementCard appointmentInfo={appointment} key={index} />
+            ))
+          ) : (
+            <EmptyPage>You do not host any appointments now.</EmptyPage>
+          )}
+        </MainSection>
       </div>
     </>
   );

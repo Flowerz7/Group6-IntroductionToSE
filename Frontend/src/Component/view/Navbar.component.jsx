@@ -9,7 +9,11 @@ export function NavbarItemGroup(props) {
 }
 
 export function NavbarLogo(props) {
-  return <span>{props.logo}</span>;
+  return (
+    <span>
+      <Link to="/">{props.logo}</Link>
+    </span>
+  );
 }
 
 export function NavbarItem(props) {
@@ -17,9 +21,9 @@ export function NavbarItem(props) {
 
   return (
     <li>
-      <a href={props.link} onClick={() => setOpen(!open)}>
+      <Link to={props.link} onClick={() => setOpen(!open)}>
         {props.featureName}
-      </a>
+      </Link>
 
       {open && props.children}
     </li>
@@ -52,6 +56,9 @@ export default function MainNavbar(props) {
   const { currentUser, currentID, logout } = useAuth();
   const [currentMajor, setCurrentMajor] = useState(props.currentMajor);
   const history = useHistory();
+
+  const notiIcon = <i class="fas fa-bell"></i>;
+  const accountIcon = <i class="fas fa-user"></i>;
 
   async function handleLogOut() {
     try {
@@ -97,8 +104,8 @@ export default function MainNavbar(props) {
         </NavbarItem>
       </NavbarItemGroup>
       <NavbarItemGroup>
-        <NavbarItem featureName="notifications" />
-        <NavbarItem featureName="account">
+        <NavbarItem link="#" featureName={notiIcon} />
+        <NavbarItem link="#" featureName={accountIcon}>
           <DropdownMenu>
             <DropdownOption
               handleOnClick={handleOnClickProfile}

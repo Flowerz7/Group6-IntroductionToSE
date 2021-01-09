@@ -79,8 +79,9 @@ section {
 .nav-container span {
   display: block;
   font-family: HelveticaBold;
-  font-size: 2em;
-  padding-bottom: 10px;
+  font-size: 1.5em;
+  pointer-events: auto;
+  margin: 0 10px;
 }
 .nav-container nav {
   height: 100px;
@@ -92,10 +93,15 @@ section {
   display: flex;
   height: 100px;
   align-items: center;
+  margin: 0 20px;
 }
 .nav-container li {
   list-style-type: none;
   padding: 0 2em;
+}
+.nav-container li i {
+  margin: 0;
+  padding: 0;
 }
 .nav-container a {
   color: #000;

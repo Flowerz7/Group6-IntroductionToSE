@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import regeneratorRuntime from "regenerator-runtime";
+import "regenerator-runtime";
 import { useAuth } from "../../contexts/AuthContext.js";
 
 export default function LoginPage() {

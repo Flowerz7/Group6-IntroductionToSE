@@ -7,6 +7,8 @@ const MentorManagementCard = lazy(() =>
   import("./MentorManagementCard.component")
 );
 
+const MainSection = lazy(() => import("./MainSection.component"));
+const EmptyPage = lazy(() => import("./EmptyPage.component"));
 const MainNavbar = lazy(() => import("./Navbar.component"));
 import { SideBar, FeatureItem } from "./SideBar.component";
 
@@ -25,8 +27,6 @@ export default function JoinManagementPage(props) {
     setAppointments(data);
   }, []);
 
-  console.log(`appointment: ${JSON.stringify(appointments)}`);
-
   return (
     <>
       <MainNavbar />
@@ -35,11 +35,15 @@ export default function JoinManagementPage(props) {
           <FeatureItem url="#" featureName="Appointment" />
           <FeatureItem url="#" featureName="Workshops" />
         </SideBar>
-        <section>
-          {appointments.map((appointment, index) => (
-            <MentorManagementCard appointmentInfo={appointment} key={index} />
-          ))}
-        </section>
+        <MainSection>
+          {appointments.length > 0 ? (
+            appointments.map((appointment, index) => (
+              <MentorManagementCard appointmentInfo={appointment} key={index} />
+            ))
+          ) : (
+            <EmptyPage>You do not join any appointments now.</EmptyPage>
+          )}
+        </MainSection>
       </div>
     </>
   );

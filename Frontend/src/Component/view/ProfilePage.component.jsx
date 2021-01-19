@@ -8,13 +8,21 @@ const MainNavbar = lazy(() => import("./Navbar.component"));
 
 export default function ProfilePage(props) {
   const [profile, setProfile] = useState({});
+  const [reviews, setReviews] = useState([]);
   const id = props.match.params.id;
 
   useEffect(async () => {
-    const result = await axios.get(`http://localhost:3000/profiles/${id}`);
+    const givenProfile = await axios.get(
+      `http://localhost:3000/profiles/${id}`
+    );
+    const giveReviews = await axios.get(`http://localhost:3000/reviews`);
 
-    if (result.data !== null) {
-      setProfile(result.data);
+    if (givenProfile.data !== null) {
+      setProfile(givenProfile.data);
+    }
+
+    if (giveReviews.data !== null) {
+      setReviews(giveReviews.data.filter((review) => review.mentorID === id));
     }
   }, []);
 
@@ -22,7 +30,7 @@ export default function ProfilePage(props) {
     <>
       <MainNavbar />
       <div className="container">
-        <ProfileSection mentorID={id} info={profile} />
+        <ProfileSection mentorID={id} info={profile} reviewInfo={reviews} />
       </div>
     </>
   );

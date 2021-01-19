@@ -98,9 +98,6 @@ section {
   transform: translate(-50%, -50%);
 }
 
-.overview-container {
-  margin: 1em 0;
-}
 .overview-container .info-container {
   display: flex;
   align-items: center;
@@ -122,11 +119,11 @@ section {
   justify-content: space-between;
   max-width: 90%;
   border-radius: 20px;
-  border: solid #000 2px;
-  padding: 1.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 1em;
   margin: 0 auto;
   margin-bottom: 3em;
-  overflow: auto;
+  overflow: hidden;
 }
 .mentor-card .btn-group {
   display: flex;
@@ -137,10 +134,10 @@ section {
   display: flex;
   flex-direction: column;
   max-width: 90%;
-  padding: 1em;
+  padding: 2em;
   margin: 0 auto;
   margin-bottom: 3em;
-  overflow: auto;
+  overflow: hidden;
 }
 .profile-section .info-container {
   display: flex;
@@ -153,6 +150,7 @@ section {
 }
 .profile-section .overview {
   margin-top: 1em;
+  overflow: hidden;
 }
 .profile-section .btn-group {
   margin-top: 1em;
@@ -254,6 +252,37 @@ aside ul {
 }
 aside li {
   margin-bottom: 1em;
+}
+
+.star-review input[type=radio] {
+  display: none;
+}
+.star-review i {
+  font-size: 30px;
+}
+
+.reviews-section {
+  margin-top: 2em;
+}
+.reviews-section h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin: 1em 0;
+  padding: 1em;
+}
+.review-card input[type=radio] {
+  display: none;
+}
+.review-card .comment {
+  margin-top: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,6 +7,7 @@ const profileRouter = require("./routes/profiles.route");
 const requirementRouter = require("./routes/requirements.route");
 const appointmentRouter = require("./routes/appoinments.route");
 const mailRouter = require("./routes/mails.route");
+const reviewRouter = require("./routes/reviews.route");
 
 require("dotenv").config();
 
@@ -20,6 +21,7 @@ app.use("/profiles", profileRouter);
 app.use("/requirements", requirementRouter);
 app.use("/appointments", appointmentRouter);
 app.use("/mails", mailRouter);
+app.use("/reviews", reviewRouter);
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {

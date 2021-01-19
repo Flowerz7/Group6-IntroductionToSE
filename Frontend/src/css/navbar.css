@@ -111,15 +111,20 @@ section {
 .nav-container a:hover {
   color: #D96C62;
 }
+.nav-container .navbar-item {
+  position: relative;
+}
 .nav-container .menu-dropdown {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
+  left: -10px;
   position: absolute;
   margin-top: 10px;
   padding: 1em;
   background-color: #fff;
   border-radius: 10px;
-  border: 2px solid #000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   font-size: 12px;
 }
 

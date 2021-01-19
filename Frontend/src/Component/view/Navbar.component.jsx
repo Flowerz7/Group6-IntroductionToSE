@@ -20,7 +20,7 @@ export function NavbarItem(props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <li>
+    <li className="navbar-item">
       <Link to={props.link} onClick={() => setOpen(!open)}>
         {props.featureName}
       </Link>
@@ -57,8 +57,8 @@ export default function MainNavbar(props) {
   const [currentMajor, setCurrentMajor] = useState(props.currentMajor);
   const history = useHistory();
 
-  const notiIcon = <i class="fas fa-bell"></i>;
-  const accountIcon = <i class="fas fa-user"></i>;
+  const notiIcon = <i className="fas fa-bell"></i>;
+  const accountIcon = <i className="fas fa-user"></i>;
 
   async function handleLogOut() {
     try {

@@ -12,8 +12,6 @@
 
 // Overvew Section:
 .overview-container {
-  margin: 1em 0;
-
   .info-container {
     display: flex;
     align-items: center;
@@ -40,13 +38,12 @@
 
   max-width: 90%;
   border-radius: 20px;
-  border: solid $secondary-color 2px;
-  padding: 1.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 1em;
   margin: 0 auto;
   margin-bottom: 3em;
 
-  overflow: auto;
-
+  overflow: hidden;
 
   .btn-group {
     display: flex;
@@ -60,11 +57,11 @@
   flex-direction: column;
 
   max-width: 90%;
-  padding: 1em;
+  padding: 2em;
   margin: 0 auto;
   margin-bottom: 3em;
 
-  overflow: auto;
+  overflow: hidden;
 
   .info-container {
     display: flex;
@@ -79,6 +76,7 @@
   
   .overview {
     margin-top: 1em;
+    overflow: hidden;
   }
 
   .btn-group {
@@ -201,5 +199,43 @@ aside {
 
   li {
     margin-bottom: 1em;
+  }
+}
+
+.star-review {
+  input[type="radio"] {
+    display: none;
+  }
+
+  i {
+    font-size: 30px;
+  }
+}
+
+.reviews-section {
+  margin-top: 2em;
+  
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin: 1em 0;
+  padding: 1em;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .comment {
+    margin-top: 1em;
   }
 }

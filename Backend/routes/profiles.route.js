@@ -6,8 +6,6 @@ router.route("/").get(async (req, res) => {
   try {
     const profiles = await Profile.find();
 
-    console.log(`Profile: ${profiles}`);
-
     res.json(profiles);
   } catch {
     res.status(400).json("Error when get all profile!");

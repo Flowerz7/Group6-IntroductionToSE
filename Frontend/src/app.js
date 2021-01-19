@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { AuthProvider } from "./contexts/AuthContext.js";
 
 const PrivateRoute = lazy(() =>

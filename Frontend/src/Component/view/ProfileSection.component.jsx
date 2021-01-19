@@ -4,9 +4,12 @@ import { ModalForm } from "./ModalForm.component";
 import { useAuth } from "../../contexts/AuthContext";
 import "regenerator-runtime";
 
+const ReviewCard = lazy(() => import("./ReviewCard.component"));
+
 export default function ProfileSection(props) {
   const [modalShow, setModalShow] = useState(false);
   const { currentID } = useAuth();
+  const { reviewInfo } = props;
 
   const requirementInfo = {
     mentorID: props.info._id,
@@ -44,6 +47,16 @@ export default function ProfileSection(props) {
           <button className="btn-secondary2">Update profile</button>
         </div>
       )}
+      <div className="reviews-section">
+        <h2>Reviews</h2>
+        {reviewInfo.length === 0 ? (
+          <div>There are not any reviews.</div>
+        ) : (
+          reviewInfo.map((review, index) => (
+            <ReviewCard key={index} info={review} />
+          ))
+        )}
+      </div>
     </section>
   );
 }

@@ -4,14 +4,25 @@ import axios from "axios";
 import "regenerator-runtime";
 
 const OverviewSection = lazy(() => import("./OverviewSection.component"));
+import { ModalReview } from "./ModalForm.component";
 
 export default function MentorManagementCard(props) {
   const mentorID = props.appointmentInfo.mentorID;
   const id = props.appointmentInfo._id;
   const [mentorInfo, setMentorInfo] = useState({});
+  const [modalShow, setModalShow] = useState(false);
   const history = useHistory();
 
-  async function handleReview() {
+  async function handleReview(rating, comment) {
+    const newReview = {
+      mentorID: props.appointmentInfo.mentorID,
+      menteeID: props.appointmentInfo.menteeID,
+      rating,
+      comment,
+    };
+
+    await axios.post("http://localhost:3000/reviews/add", newReview);
+
     const newAppointment = {
       mentorID: props.appointmentInfo.mentorID,
       menteeID: props.appointmentInfo.menteeID,
@@ -44,15 +55,23 @@ export default function MentorManagementCard(props) {
         major={mentorInfo.major}
         overview={mentorInfo.overview}
       />
+      <ModalReview
+        id={mentorID}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        review={handleReview}
+      />
       <div className="btn-group">
         {props.appointmentInfo.status === "done" && (
-          <button onClick={handleReview} className="btn-secondary2">
+          <button onClick={() => setModalShow(true)} className="btn-secondary2">
             Review
           </button>
         )}
-        <button onClick={handleCancel} className="btn-primary2">
-          Cancel
-        </button>
+        {props.appointmentInfo.status !== "done" && (
+          <button onClick={handleCancel} className="btn-primary2">
+            Cancel
+          </button>
+        )}
       </div>
     </div>
   );
